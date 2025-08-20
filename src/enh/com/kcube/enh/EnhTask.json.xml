@@ -1,0 +1,54 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapping name="task" class="com.kcube.enh.task.EnhTask">
+	<bean class="com.kcube.enh.task.EnhTask">
+		<value name="id" />
+		<value name="enhId" />
+		<value name="enhName" />
+		<value name="lastUpdt" />
+		<value name="rgstDate" />
+		<value name="taskSdate" />
+		<value name="taskEdate" />
+		<value name="planSdate" />
+		<value name="planEdate" />
+		<value name="percent" />
+		<value name="taskCode" />
+		<value name="reside" />
+		<value name="task" />
+		<value name="content" />
+		<value name="fileExt" />
+		<value name="opnCnt" />
+		<value name="author" />
+		<value name="isVisb" />
+		<value name="currentOwner" />
+		<value name="attachments" source="com.kcube.enh.task.EnhTask$Attachment" />
+		<value name="opinions" method="jsonOpinions" source="com.kcube.enh.task.EnhTask$Opinion" />
+	</bean>
+	<bean class="com.kcube.sys.usr.User">
+		<value name="name" />
+		<value name="displayName" />
+		<value name="id" method="userId" />
+	</bean>
+	<bean class="com.kcube.enh.task.EnhTask$Attachment">
+		<value name="id" />
+		<value name="size" method="filesize" />
+		<value name="filename" />
+		<value name="path" />
+		<value name="type" />
+		<value name="method" />
+	</bean>
+	<bean class="com.kcube.enh.task.EnhTask$Opinion">
+		<value name="id" />
+		<value name="gid" />
+		<value name="itemId" />
+		<value name="content" />
+		<value name="user" method="rgstUser" />
+		<value name="rgstDate" />
+		<value name="currentOwner" />
+	</bean>
+	<bean class="com.kcube.doc.opn.OpinionJson">
+		<value name="total" />
+		<value name="rest" />
+		<value name="array" />
+	</bean>
+</mapping>
+	

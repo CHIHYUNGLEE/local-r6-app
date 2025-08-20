@@ -1,0 +1,8 @@
+.EnhAutoUserNameComplete {position:absolute;z-index:10;height:auto; background-color:#ffffff; }
+.EnhAutoUserNameComplete .iframe {position:absolute;z-index:-1;width:100%; height:0px;}
+.EnhAutoUserNameComplete .widget {border:1px solid #888d95;}
+.EnhAutoUserNameComplete .unlist {list-style:none; margin:0px; padding:0px;}
+.EnhAutoUserNameComplete .item {font-family:'gulim'; height:23px; line-height:1.5em; vertical-align:top; font-size:12px; cursor:pointer;}
+.EnhAutoUserNameComplete .linker {padding:3px 0px 2px 0px; width:100%; text-indent:5px; line-height:1.5em; display:block; color:#666;}
+.EnhAutoUserNameComplete .selected {background-color:#f5f5f5;}
+.EnhAutoUserNameComplete strong {color:#f76d1a;}

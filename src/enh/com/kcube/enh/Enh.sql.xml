@@ -1,0 +1,108 @@
+<?xml version="1.0" encoding="utf-8"?>
+<sql>
+	<table name="enh_item">
+		<column groups="list" name="enhid" alias="id" />
+		<column groups="list" name="enh_name" alias="enhName" />
+		<column groups="list" name="enh_sdate" alias="enhSdate" />
+		<column groups="list" name="enh_edate" alias="enhEdate" />
+		<column groups="list" name="userid" alias="userId" />
+		<column groups="list" name="content" alias="content" />
+		<column groups="list" name="rgst_name" alias="rgstName" />
+		<column groups="list" name="rgst_date" alias="rgstDate" />
+		<column groups="list" name="file_ext" alias="fileExt" />
+		<column groups="list" name="opn_cnt" alias="opnCnt" />
+		<column groups="list" name="ofceid" alias="orgId" />
+		<column groups="list" name="ofce_name" alias="orgName" />
+		<column groups="list" name="status" alias="status" />
+		<column groups="" name="pmid" alias="pmId" />
+		<column groups="list" name="pm_name" alias="pmName" />
+		<column groups="" name="pm_disp" alias="pmDisp" />
+		<column groups="" name="user_disp" alias="userDisp" />
+		<column groups="" name="last_updt" alias="lastUpdt" />
+		<column groups="" name="isvisb" alias="isVisb" />
+		<column groups="list" name="complete_date" alias="completeDate" />
+		<column groups="" name="title_t" alias="mod" />
+		<column groups="" name="actorCnt" alias="actorCnt" />
+	</table>
+	<table name="enh_item_mbr">
+		<column groups="" name="enhid" alias="id" />
+		<column groups="" name="userid" alias="userId" />
+		<column groups="" name="user_name" alias="userName" />
+		<column groups="" name="user_disp" alias="userDisp" />
+		<column groups="" name="seq_order" alias="order" />
+		<column groups="" name="status" alias="status" />
+		<column groups="" name="isvisb" alias="isVisb" />
+	</table>
+	<table name="enh_item_task">
+		<column groups="list" name="taskid" alias="id" />
+		<column groups="list" name="rgst_date" alias="rgstDate" />
+		<column groups="list" name="task_sdate" alias="taskSdate" />
+		<column groups="list" name="task_edate" alias="taskEdate" />
+		<column groups="list" name="plan_sdate" alias="planSdate" />
+		<column groups="list" name="plan_edate" alias="planEdate" />
+		<column groups="list" name="percent" alias="percent" />
+		<column groups="list" name="userid" alias="userId" />
+		<column groups="list" name="user_name" alias="userName" />
+		<column groups="list" name="task" alias="task" />
+		<column groups="list" name="file_ext" alias="fileExt" />
+		<column groups="list" name="opn_cnt" alias="opnCnt" />
+		<column groups="list" name="enhid" alias="enhid" />
+		<column groups="" name="last_updt" alias="lastUpdt" />
+		<column groups="" name="user_disp" alias="userDisp" />
+		<column groups="list" name="task_code" alias="taskCode" />
+		<column groups="list" name="reside" alias="reside" />
+		<column groups="" name="task_content" alias="taskContent" />
+		<column groups="" name="grade_name" alias="gradeName" />
+		<column groups="" name="grade_sort" alias="gradeSort" />
+	</table>
+	<table name="enh_item_join_enh_item_task">
+		<column groups="" name="enhid" alias="enhId" />
+		<column groups="" name="enh_name" alias="enhName" />
+		<column groups="" name="enh_sdate" alias="enhSdate" />
+		<column groups="" name="enh_edate" alias="enhEdate" />
+		<column groups="" name="rgst_name" alias="rgstName" />
+		<column groups="" name="rgst_date" alias="rgstDate" />
+		<column groups="" name="userid" alias="userId" />
+		<column groups="" name="name" alias="userName" />
+		<column groups="" name="hStatus" alias="hStatus" />
+		<column groups="" name="pm_name" alias="pmName" />
+		<column groups="" name="taskid" alias="taskId" />
+		<column groups="" name="task_code" alias="taskCode" />
+		<column groups="" name="reside" alias="reside" />
+		<column groups="" name="task_sdate" alias="taskSdate" />
+		<column groups="" name="task_edate" alias="taskEdate" />
+		<column groups="" name="plan_sdate" alias="planSdate" />
+		<column groups="" name="plan_edate" alias="planEdate" />
+		<column groups="" name="percent" alias="percent" />
+		<column groups="" name="task_count" alias="taskCount" />
+		<column groups="" name="status" alias="status" />
+		<column groups="list" name="ofceid" alias="orgId" />
+		<column groups="list" name="ofce_name" alias="orgName" />
+	</table>
+	<table name="enh_item_mod">
+		<column groups="list" name="modid" alias="id" />
+		<column groups="list" name="enhid" alias="enhid" />
+		<column groups="list" name="title" alias="title" />
+		<column groups="list" name="item_title" alias="itemTitle" />
+		<column groups="list" name="content" alias="content" />
+		<column groups="list" name="status" alias="status" />
+		<column groups="list" name="package_name" alias="pacName" />
+		<column groups="list" name="seq_order" alias="seqOrder" />
+		<column groups="list" name="userid" alias="userId" />
+		<column groups="list" name="user_name" alias="userName" />
+		<column groups="list" name="user_disp" alias="userDisp" />
+		<column groups="list" name="rgst_date" alias="rgstDate" />
+		<column groups="list" name="last_updt" alias="lastUpdt" />
+		<column groups="list" name="last_name" alias="lastName" />
+		<column groups="list" name="last_disp" alias="lastDisp" />
+		<column groups="list" name="last_userid" alias="lastuserId" />
+		<column groups="list" name="file_ext" alias="fileExt" />
+		<column groups="" name="isvisb" alias="isVisb" />
+	</table>
+	<table name="enh_item_mod_list">
+		<column groups="list" name="title" alias="title" />
+		<column groups="list" name="mod_count" alias="modCount" />
+		<column groups="list" name="rgst_date" alias="rgstDate" />
+		<column groups="list" name="last_updt" alias="lastUpdt" />
+	</table>
+</sql>

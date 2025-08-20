@@ -1,0 +1,12 @@
+/* .EnhTaskActorColumn {height:28px; line-height:28px; padding:0; font-size:11px;font-family:'dotum','Arial'; font-size:11px; color:#414141; text-decoration:none;text-overflow:ellipsis;overflow:hidden;} */
+/* .EnhTaskActorColumn .nobr {} */
+/* .EnhTaskActorColumn_moveDiv {padding:1px 0 6px 0;display:none;position:absolute;width:90px;background-color:#FFFFFF;border:1px solid #AAAAAA;z-index:1000;padding:1px 0 6px 0;} */
+/* .EnhTaskActorColumn_moveDiv .actors {padding:6px 0 0 6px; height:13px; } */
+/* .EnhTaskActorColumn_moveDiv .text {cursor:pointer;color:#5a5a5a; font-family:'Dotum','Arial'; font-size:12px;} */
+/* .EnhTaskActorColumn_moveDiv .text:hover{text-decoration:underline;} */
+.EnhTaskActorColumn{color:#555;font-size:13px;letter-spacing:-0.5px;text-overflow:ellipsis;overflow:hidden;white-space:nowrap;}
+.EnhTaskActorColumn:hover{color:#222;}
+.EnhTaskActorColumn_moveDiv{position:absolute;z-index:1000;display:none;width:104px;padding:7px 0;border:1px solid rgba(74,74,74,0.15);border-radius:2px;background:#FFF;box-shadow:10px 10px 14px rgba(0,0,0,0.07);}
+.EnhTaskActorColumn_moveDiv .actors{height:auto;padding:0 14px;color:#555;font-size:13px;font-family:'Malgun Gothic', '맑은 고딕', 'Dotum', 'Gulim';letter-spacing:-0.25px;line-height:28px;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;}
+.EnhTaskActorColumn_moveDiv .actors a{color:#555;}
+.EnhTaskActorColumn_moveDiv .actors a:hover{color:#000;}

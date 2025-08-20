@@ -1,0 +1,4 @@
+.EnhOrgTitleColumn {text-overflow:ellipsis;overflow:hidden;font-size: 13px;}
+.EnhOrgTitleColumn .nobr{color: #777;}
+.EnhOrgTitleColumn .link{cursor:pointer; color: #000;}
+.EnhOrgTitleColumn .TextColumnImg {vertical-align:middle;}

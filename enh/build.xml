@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<project name="enh-local" default="release" basedir="../">
+	<property environment="env" />
+	<property name="module-base" value="com/kcube/enh" />
+	<property name="warName" value="Enh" />
+	<property name="app-base" value="${env.KCUBE_APPBASE}" />
+	<property name="app-temp" value="${env.TEMP}/r6-app/${ant.project.name}" />
+	<property name="dst-app" value="D:/eclipse-r6-201909/kcube-r6/output" />
+	<property name="version" value="1.8" />
+	<property name="yuicompressor-jar" value="./doc/yuicompressor-2.4.7.jar" description="YUI Compressor" />
+	<property name="jsmin-exe" value="../doc/jsmin.exe" description="jsmin" />
+	
+	<!-- dst-app에 바로 web소스를 품.-->
+	<target name="web" depends="enh-js,enh-css">
+		<copy todir="${dst-app}/${ant.project.name}" includeEmptyDirs="no" overwrite="true">
+			<fileset dir="${ant.project.name}/${ant.project.name}" />
+		</copy>
+	</target>
+	
+	<!-- dst-app에 바로 src소스를 품.-->
+	<target name="src">
+		<copy todir="${dst-app}/WEB-INF/classes">
+			<fileset dir="target/classes">
+				<include name="${module-base}/**/*.class" />
+				<include name="${module-base}/**/*.hbm.xml" />
+				<include name="${module-base}/**/*.sql.xml" />
+				<include name="${module-base}/**/*.json.xml" />
+				<include name="${module-base}/**/*.aop.xml" />
+				<include name="${module-base}/**/*.xlsx" />
+			</fileset>
+		</copy>
+		<native2ascii dest="${dst-app}/WEB-INF/classes/${module-base}" ext=".properties" encoding="UTF-8" src="src/${ant.project.name}/${module-base}" includes="**/*.properties" />
+	</target>
+	
+	<!-- js 파일을 통합한후 압축파일을 생성한다.-->
+	<target name="enh-js">
+		<concat destfile="${ant.project.name}/enh/enh.js" encoding="UTF-8">
+	 		<fileset dir="${ant.project.name}/enh/js">
+	    		<include name="*.js" />
+	   		</fileset>
+		</concat>
+		<exec executable="${jsmin-exe}" input="${ant.project.name}/enh/enh.js" output="${ant.project.name}/enh/enh_min.js" />
+	 	<copy file="${ant.project.name}/enh/enh.js" todir="${app-temp}/enh/" />
+	 	<copy file="${ant.project.name}/enh/enh_min.js" todir="${app-temp}/enh/" />
+	 </target>
+	
+	<!-- css 파일을 통합한후 압축파일을 생성한다.-->
+	<target name="enh-css">
+		<concat destfile="${ant.project.name}/enh/enh.css" encoding="UTF-8">
+			<fileset dir="${ant.project.name}/enh">
+				<include name="js/*.css" />
+			</fileset>
+		</concat>
+		<java jar="${yuicompressor-jar}" fork="true" failonerror="true">
+		    <arg value="--charset" />
+		    <arg value="utf-8" />
+		    <arg value="-o" />
+		    <arg value="${ant.project.name}/enh/enh_min.css" />
+		    <arg value="${ant.project.name}/enh/enh.css" />
+		</java>
+	 	<copy file="${ant.project.name}/enh/enh.css" todir="${app-temp}/enh/" />
+	 	<copy file="${ant.project.name}/enh/enh_min.css" todir="${app-temp}/enh/" />
+	</target>
+	
+	<target name="war" depends="web">
+		<delete dir="${app-temp}" />
+		<copy todir="${app-temp}">
+			<fileset dir="target/classes">
+				<include name="${module-base}/**/*.class" />
+				<include name="${module-base}/**/*.hbm.xml" />
+				<include name="${module-base}/**/*.sql.xml" />
+				<include name="${module-base}/**/*.json.xml" />
+				<include name="${module-base}/**/*.aop.xml" />
+			</fileset>
+		</copy>
+		<native2ascii dest="${app-temp}" ext=".properties" encoding="UTF-8" src="target/classes" includes="${module-base}/**/*.properties" />
+		<copy todir="${app-temp}/web">
+			<fileset dir="${ant.project.name}">
+				<exclude name="build.xml" />
+			</fileset>
+		</copy>
+		<copy todir="${app-temp}/java">
+			<fileset dir="src/${ant.project.name}" />
+		</copy>
+
+		<mkdir dir="${app-temp}/lib" />
+		<jar destfile="${app-temp}/lib/${warName}.jar">
+			<fileset dir="${app-temp}">
+				<include name="${module-base}/**/*" />
+			</fileset>
+		</jar>
+	</target>
+
+	<target name="conf">
+		<copy todir="${app-temp}/conf">
+			<fileset dir="src/${ant.project.name}/${module-base}">
+				<include name="*.conf.xml" />
+				<include name="*.conf.*.xml" />
+			</fileset>
+		</copy>
+	</target>
+	<target name="lang-ext">
+		<tstamp>
+			<format property="timestamp" pattern="yyMMddHHmmssS" />
+		</tstamp>
+		<replaceregexp match="LANG_VERSION = '[0-9]*'" replace="LANG_VERSION = '${timestamp}'" flags="g" encoding="UTF-8">
+			<fileset dir="${web}" includes="script.language.ver.ext.js" />
+		</replaceregexp>
+	</target>
+	<target name="buildWithConf" depends="war,conf">
+		<jar destfile="${app-base}/${warName}.war" basedir="${app-temp}" update="false" />
+	</target>
+
+	<target name="build" depends="war">
+		<jar destfile="${app-base}/${warName}.war" basedir="${app-temp}" update="false" />
+	</target>
+
+	<target name="release" depends="war,conf">
+		<tstamp>
+			<format property="builtDate" pattern="yyyy-MM-dd HH:mm:ss" />
+		</tstamp>
+		<jar destfile="target/${warName}-${version}.war" basedir="${app-temp}" update="false">
+			<manifest>
+				<attribute name="Implementation-Title" value="KCUBE R6 ${module-base}/${warName}" />
+				<attribute name="Implementation-Version" value="${version}" />
+				<attribute name="Implementation-Vendor" value="Knowledge Cube Inc." />
+				<attribute name="Built-Date" value="${builtDate}" />
+			</manifest>
+		</jar>
+		<copy todir="../r6-release/v${version}/r6-app/">
+			<fileset dir="target" includes="${warName}-${version}.war" />
+		</copy>
+	</target>
+</project>

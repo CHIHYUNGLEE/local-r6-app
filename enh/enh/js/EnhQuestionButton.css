@@ -1,0 +1,14 @@
+.EnhQuestionButton {position:relative;margin-top: 4px;}
+.EnhQuestionButton .qbtnA {display: block; padding: 5px;}
+.EnhQuestionButton .qbtnA *{transition:all .15s ease-out;-moz-transition:all .15s ease-out;-webkit-transition:all .15s ease-out;-ms-transition:all .15s ease-out;-o-transition:all .15s ease-out;}
+.EnhQuestionButton .qbtnA .qbtn {display: block; width: 17px; height: 17px; border-radius: 50%; background: #8f9599; overflow: hidden;}
+.EnhQuestionButton .qbtnA .qbtn span {display:block;width:7px;height:9px;margin:3px 0 0 4px;font-size:0;text-indent:-9999px;}
+.EnhQuestionButton .qbtnA:hover .qbtn{background:#5f676c;}
+.EnhQuestionButton.on .qbtnA .qbtn {background:#5f676c;}
+.EnhQuestionButton.on .tipDiv{display:block;}
+.EnhQuestionButton .tipDiv {z-index:9999;position:absolute;top:29px;left:0;display:none;padding:7px 7px 8px 8px;border:1px solid rgba(199,199,199,0.5);border-radius:3px;background:#f2f2f3;}
+.EnhQuestionButton .tipDiv .innerWrap {font-size: 13px;font-weight: 400;color: #444;line-height: 18px;letter-spacing: -0.5px;white-space: nowrap;}
+.EnhQuestionButton .tipDiv .innerWrap .tip {font-size:14px; font-weight:bold; color:#444;line-height:18px;letter-spacing:-0.5px;white-space:nowrap;}
+.EnhQuestionButton .tipDiv ul {margin-top:5px;overflow:hidden;}
+.EnhQuestionButton .tipDiv li {position:relative;padding-left:12px;margin-top:6px;}
+.EnhQuestionButton .tipDiv li:before {content:'';position:absolute;top:7px;left:2px;display:block;width:3px;height:3px;background:#b8b8b8;}

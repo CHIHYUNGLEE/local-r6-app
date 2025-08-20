@@ -1,0 +1,36 @@
+.EnhTaskStatusFieldEditor {display:block;font-size:0;white-space:nowrap;}
+.EnhTaskStatusFieldEditor .dueDate{display:inline-block;vertical-align:top;margin-right:15px;margin-left:15px;color:#555;font-size:14px;letter-spacing:-0.25px;}
+.EnhTaskStatusFieldEditor .btn{position:relative;*zoom:1;display:inline-block;padding:8px 6px 6px 6px;}
+.EnhTaskStatusFieldEditor .btn:after{content:'';display:block;clear:both;}
+.EnhTaskStatusFieldEditor .btn:before{
+	content:'';position:absolute;top:0;bottom:0;left:0;right:0;border-radius:3px;opacity:0;
+	transform:scaleX(0);-webkit-transform:scaleX(0);
+	transform-origin:50%;-webkit-transform-origin:50%;
+	transition:all .15s ease-out;-moz-transition:all .15s ease-out;-webkit-transition:all .15s ease-out;-ms-transition:all .15s ease-out;-o-transition:all .15s ease-out;
+} 
+.EnhTaskStatusFieldEditor .btn img{position:relative;z-index:1;float:left;display:block;opacity:0.5;transition:all .15s ease-out;-moz-transition:all .15s ease-out;-webkit-transition:all .15s ease-out;-ms-transition:all .15s ease-out;-o-transition:all .15s ease-out;}
+.EnhTaskStatusFieldEditor .btn:hover img, .EnhTaskStatusFieldEditor .btn:active img{opacity:1;}
+.EnhTaskStatusFieldEditor .btn:hover:before{background:rgba(0,0,0,0.05);opacity:1;transform:scaleX(1);-webkit-transform:scaleX(1);}
+.EnhTaskStatusFieldEditor .btn:active:before{background:rgba(0,0,0,0.1);}
+.EnhTaskStatusFieldEditor.on .btn img{opacity:1;}
+.EnhTaskStatusFieldEditor.on .btn:before{background:rgba(0,0,0,0.1);opacity:1;transform:scaleX(1);-webkit-transform:scaleX(1);}
+.EnhTaskStatusFieldEditor .layer{z-index:1000;position:absolute;top:26px;right:-1px;min-width:84px;display:none;border:1px solid rgba(74,74,74,0.15);border-radius:2px;background:#FFF;box-shadow:10px 10px 14px rgba(0,0,0,0.07);}
+.EnhTaskStatusFieldEditor .layer ul{padding:4px 0;}
+.EnhTaskStatusFieldEditor .layer li{font-size:13px;letter-spacing:-0.25px;text-align:left;}
+.EnhTaskStatusFieldEditor .layer li a{
+	position:relative;display:block;min-height:34px;padding:0 15px;color:#555;overflow:hidden;
+	transition:all .15s ease-out;-moz-transition:all .15s ease-out;-webkit-transition:all .15s ease-out;-ms-transition:all .15s ease-out;-o-transition:all .15s ease-out;
+}
+.EnhTaskStatusFieldEditor .layer li a:hover{color:#111;background:#f2f2f3;}
+.EnhTaskStatusFieldEditor .layer li.selected a{color:#111;padding-right:37px;}
+.EnhTaskStatusFieldEditor .layer li.selected a:before{content:'';position:absolute;top:12px;right:15px;display:block;width:12px;height:10px;background:url(img/ico_selected_status.png) 0 0 no-repeat;}
+.EnhTaskStatusFieldEditor .layer li .txt{float:left;margin-top:8px;margin-bottom:6px;}
+.EnhTaskStatusBox{display:inline-block;width:55px;height:22px;padding:0 5px;margin-top:-1px;border-radius:11px;color:#FFF;font-size:11px;letter-spacing:-0.5px;line-height:21px;text-align:center;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;box-sizing:content-box;}
+.EnhTaskStatusBox.status3400{background:#ff3f80;}
+.EnhTaskStatusBox.status3500{background:#72aff7;}
+.EnhTaskStatusBox.status3600{background:#1ab6ac;}
+.EnhTaskStatusBox.status3900{background:#c0c0c0;}
+.EnhTaskStatusBox.status3800{background:#b6bec2;}
+.EnhTaskStatusBox.status3700{background:#97a2a8;}
+.EnhTaskStatusBox.status9000{background:#b6bec2;}
+.EnhTaskStatusBox.status0{background:#b6bec2;}

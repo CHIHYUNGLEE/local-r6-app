@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<mapping class="com.kcube.enh.mod.EnhModList">
+	<bean class="com.kcube.enh.mod.EnhModList">
+		<value name="modList" source="com.kcube.enh.mod.EnhMod" />
+	</bean>
+	<bean class="com.kcube.enh.mod.EnhMod">
+		<value name="id" />
+		<value name="enhId" />
+		<value name="title" />
+		<value name="content" />
+		<value name="lastUser" />
+		<value name="lastUpdt" />
+		<value name="seqOrder" />
+	</bean>
+</mapping>

@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<mapping class="com.kcube.enh.Enh">
+	<bean class="com.kcube.enh.Enh">
+		<value name="id" />
+		<value name="enhName" />
+		<value name="rgstDate" />
+		<value name="lastUpdt" />
+		<value name="enhSdate" />
+		<value name="enhEdate" />
+		<value name="content" />
+		<value name="status" />
+		<value name="visible" />
+		<value name="author" />
+		<value name="fileExt" />
+		<value name="currentPm" />
+		<value name="currentOwner" />
+		<value name="pmUser" />
+		<value name="orgInfo" method="officeInfo" />
+		<value name="attachments" source="com.kcube.enh.Enh$Attachment" />
+		<value name="opinions" method="jsonOpinions" source="com.kcube.enh.Enh$Opinion" />
+		<value name="mbrs" source="com.kcube.enh.Enh$Mbr" />
+		<value name="completeDate" />
+		<value name="enhIdSum" />
+		<value name="mbr" />
+	</bean>
+	<bean class="com.kcube.sys.usr.User">
+		<value name="name" />
+		<value name="displayName" />
+		<value name="id" method="userId" />
+	</bean>
+	<bean class="com.kcube.enh.Enh$OrgInfo">
+		<value name="orgId" />
+		<value name="orgName" />
+	</bean>
+	<bean class="com.kcube.enh.Enh$Mbr">
+		<value name="id" method="userId" />
+		<value name="name" />
+		<value name="displayName" />
+		<value name="status" />
+		<value name="visible" />
+	</bean>
+	<bean class="com.kcube.enh.Enh$Attachment">
+		<value name="id" />
+		<value name="size" method="filesize" />
+		<value name="filename" />
+		<value name="path" />
+		<value name="type" />
+		<value name="method" />
+	</bean>
+	<bean class="com.kcube.enh.Enh$Opinion">
+		<value name="id" />
+		<value name="gid" />
+		<value name="itemId" />
+		<value name="content" />
+		<value name="user" method="rgstUser" />
+		<value name="rgstDate" />
+		<value name="currentOwner" />
+	</bean>
+	<bean class="com.kcube.doc.opn.OpinionJson">
+		<value name="total" />
+		<value name="rest" />
+		<value name="array" />
+	</bean>
+</mapping>
+	

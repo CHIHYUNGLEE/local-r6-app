@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="utf-8"?>
+<configuration class="com.kcube.enh.Enh" version="1.0.1" name="noCtgr" category="2000">
+	<title>{"ko":"고도화 관리","en":"Enhance Management","zh":"先进管理","ja":"高度化管理"}</title>
+	<description>
+	<ko>
+		<![CDATA[고도화 관리 앱 입니다.]]>
+	</ko>
+	<ja>
+		<![CDATA[分類を指定できないアルバムです。]]>
+	</ja>
+	</description>
+	<developer>KCUBE</developer>
+	<indexUrl>/enh/usr.index.jsp</indexUrl>
+	<manageUrl>/enh/adm.index.jsp</manageUrl>
+	<iconCode>3</iconCode>
+</configuration>

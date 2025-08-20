@@ -1,0 +1,17 @@
+.EnhWebzineColumn {width:100%; font-family:'dotum','Arial'; padding:0 0 0 0px; text-align:left;}
+.EnhWebzineColumn .titleTr {}
+.EnhWebzineColumn .titleTr .titleTd {line-height:26px;padding:3px 0px 0px 8px;}
+.EnhWebzineColumn .titleTr .titleTd .icon {vertical-align:middle;padding:0px 0px 1px 3px;}
+.EnhWebzineColumn .titleTr .titleTd .titleA {margin:0 0 0 5px;text-decoration:none; color:#414141;}
+.EnhWebzineColumn .titleTr .titleTd .titleA .highlightFont {font-weight:bold;color:#0072bc;}
+.EnhWebzineColumn .titleTr .titleTd .titleA:hover {color:#000;}
+.EnhWebzineColumn .titleTr .titleTd .opnFont {color:#f26522; font-weight:normal; font-size:12px; cursor:pointer;}
+.EnhWebzineColumn .contentTr {}
+.EnhWebzineColumn .contentTr .contentTd {line-height:12px;padding:0px 0px 8px 13px;}
+.EnhWebzineColumn .contentTr .contentTd .contentA {text-decoration:none; color:#9e9e9e; line-height:120%;}
+.EnhWebzineColumn .contentTr .contentTd .noneContent {color:red}
+.EnhWebzineColumn .tagsTr {}
+.EnhWebzineColumn .tagsTr .tagsTd {background:url(img/tag.gif);background-position:13px;background-repeat:no-repeat;padding:0px 0px 0px 35px;color:#8c8c8c;height:22px;line-height:22px;font-size:12px;}
+.EnhWebzineColumn .tagsTr .tagsTd .tagsA {color:#8c8c8c; text-decoration:none;}
+.EnhWebzineColumn .tagsTr .tagsTd .tagsA .highlightFont {font-weight:bold;color:#0072bc;}
+.EnhWebzineColumn .tagsTr .tagsTd .tagsA:hover {text-decoration:underline;}

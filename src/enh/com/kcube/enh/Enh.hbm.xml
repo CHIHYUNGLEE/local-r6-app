@@ -1,0 +1,221 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping default-lazy="false">
+	<class name="com.kcube.enh.Enh" table="ENH_ITEM">
+	
+		<id name="id" column="enhid" type="java.lang.Long">
+			<generator class="native">
+		 		<param name="sequence_name">SQ_ENH_ITEM</param>
+			</generator>
+		</id>
+		<property name="enhName" column="ENH_NAME" type="com.kcube.lib.jdbc.EncString"/>
+		<property name="rgstDate" column="rgst_date" type="java.util.Date"/>
+		<property name="lastUpdt" column="last_updt" type="java.util.Date"/>
+		<property name="enhSdate" column="ENH_SDATE" type="java.util.Date"/>
+		<property name="enhEdate" column="ENH_EDATE" type="java.util.Date"/>
+		<property name="clob" column="content" type="clob"/>
+		<property name="fileExt" column="file_ext" type="com.kcube.lib.jdbc.EncString"/>
+		<property name="opnCnt" column="opn_cnt" type="integer"/>
+		<property name="status" column="status" type="integer"/>
+		<property name="visible" column="isvisb" type="boolean"/>
+		<property name="completeDate" column="COMPLETE_DATE" type="java.util.Date"/>
+		<component name="author" class="com.kcube.sys.usr.User">
+			<property name="userId" column="userid" type="java.lang.Long"/>
+			<property name="name" column="RGST_name" type="com.kcube.lib.jdbc.EncString"/>
+			<property name="displayName" column="user_disp" type="com.kcube.lib.jdbc.EncString"/>
+		</component>
+		<component name="pmUser" class="com.kcube.sys.usr.User">
+			<property name="userId" column="pmid" type="java.lang.Long"/>
+			<property name="name" column="pm_name" type="com.kcube.lib.jdbc.EncString"/>
+			<property name="displayName" column="pm_disp" type="com.kcube.lib.jdbc.EncString"/>
+		</component>
+		<component name="officeInfo" class="com.kcube.enh.Enh$OrgInfo">
+			<property name="orgId" column="ofceid" type="java.lang.Long"/>
+			<property name="orgName" column="ofce_name" type="com.kcube.lib.jdbc.EncString"/>
+		</component>
+		<set name="attachments" inverse="true" lazy="true" sort="natural">
+			<key column="enhid"/>
+			<one-to-many class="com.kcube.enh.Enh$Attachment"/>
+		</set>
+		<set name="opinions" inverse="true" lazy="true" order-by="opnid">
+			<key column="enhid"/>
+			<one-to-many class="com.kcube.enh.Enh$Opinion"/>
+		</set>	
+		<!-- ENH_ITEM의 대한 모듈들 cst -->
+		<set name="mods" inverse="true" lazy="true">
+			<key column="enhid"/>
+			<one-to-many class="com.kcube.enh.mod.EnhMod"/>
+		</set>
+		<list name="mbrs" table="enh_item_mbr" lazy="true">
+			<key column="enhid" />
+			<index column="seq_order" />
+			<composite-element class="com.kcube.enh.Enh$Mbr">
+					<property name="userId" column="userid" type="java.lang.Long" />
+					<property name="name" column="user_name" type="com.kcube.lib.jdbc.EncString" />
+					<property name="displayName" column="user_disp" type="com.kcube.lib.jdbc.EncString" />
+					<property name="status" column="status" type="integer"/>
+					<property name="visible" column="isvisb" type="boolean"/>
+			</composite-element>
+		</list>
+		<property name="tenantId" column="tenantid" type="java.lang.Long"/>
+	</class>
+
+	<class name="com.kcube.enh.Enh$Attachment" table="enh_item_file">
+		<id name="id" column="fileid" type="java.lang.Long">
+			<generator class="native">
+		 		<param name="sequence_name">SQ_ENH_ITEM_FILE</param>
+			</generator>
+		</id>
+		<property name="filename" column="file_name" type="com.kcube.lib.jdbc.EncString"/>
+		<property name="filesize" column="file_size" type="java.lang.Long"/>
+		<property name="path" column="save_path" type="com.kcube.lib.jdbc.EncString"/>
+		<property name="dnldCnt" column="dnld_cnt" type="integer"/>
+		<property name="type" column="save_code" type="integer"/>
+		<many-to-one name="item" column="enhid" class="com.kcube.enh.Enh"/>
+	</class>
+	
+	<class name="com.kcube.enh.Enh$Opinion" table="enh_item_opn">
+		<id name="id" column="opnid" type="java.lang.Long">
+			<generator class="native">
+		 		<param name="sequence_name">SQ_ENH_ITEM_OPN</param>
+			</generator>
+		</id>
+		<property name="gid" column="gid" type="java.lang.Long"/>
+		<property name="itemId" column="enhid" type="java.lang.Long"/>
+		<property name="content" column="content" type="com.kcube.lib.jdbc.EncString"/>
+		<property name="rgstDate" column="rgst_date" type="java.util.Date"/>
+		<component name="rgstUser" class="com.kcube.sys.usr.User">
+			<property name="userId" column="userid" type="java.lang.Long"/>
+			<property name="name" column="user_name" type="com.kcube.lib.jdbc.EncString"/>
+			<property name="displayName" column="user_disp" type="com.kcube.lib.jdbc.EncString"/>
+		</component>
+		<property name="rgstUserId" column="rgst_userid" type="java.lang.Long"/>
+	</class>
+	
+	<!-- 아이템의 대한 모듈(기술) -->
+	<class name="com.kcube.enh.mod.EnhMod" table="enh_item_mod">
+		<id name="id" column="modid" type="java.lang.Long">
+			<generator class="native">
+		 		<param name="sequence_name">SQ_ENH_ITEM_MOD</param>
+			</generator>
+		</id>
+		<property name="enhId" column="enhid" type="java.lang.Long"/>
+		<property name="title" column="title" type="com.kcube.lib.jdbc.EncString"/>
+		<property name="itemTitle" column="item_title" type="com.kcube.lib.jdbc.EncString"/>
+		<property name="seqOrder" column="seq_order" type="integer"/>
+		<property name="status" column="status" type="integer"/>
+		<property name="visible" column="isvisb" type="boolean"/>
+		<property name="clob" column="content" type="clob"/>
+		<property name="fileExt" column="file_ext" type="com.kcube.lib.jdbc.EncString"/>
+		<property name="pacName" column="package_name" type="com.kcube.lib.jdbc.EncString"/>
+		<property name="lastUpdt" column="last_updt" type="java.util.Date"/>
+		<property name="rgstDate" column="rgst_date" type="java.util.Date"/>
+		<component name="rgstUser" class="com.kcube.sys.usr.User">
+			<property name="userId" column="userid" type="java.lang.Long"/>
+			<property name="name" column="user_name" type="com.kcube.lib.jdbc.EncString"/>
+			<property name="displayName" column="user_disp" type="com.kcube.lib.jdbc.EncString"/>
+		</component>
+		<component name="lastUser" class="com.kcube.sys.usr.User">
+			<property name="userId" column="last_userid" type="java.lang.Long"/>
+			<property name="name" column="last_name" type="com.kcube.lib.jdbc.EncString"/>
+			<property name="displayName" column="last_disp" type="com.kcube.lib.jdbc.EncString"/>
+		</component>
+		<set name="attachments" inverse="true" lazy="true" sort="natural">
+			<key column="modid"/>
+			<one-to-many class="com.kcube.enh.mod.EnhMod$Attachment"/>
+		</set>
+	</class>
+	
+	<!-- 모듈(기술) 첨부파일 -->
+	<class name="com.kcube.enh.mod.EnhMod$Attachment" table="enh_item_mod_file">
+		<id name="id" column="fileid" type="java.lang.Long">
+			<generator class="native">
+		 		<param name="sequence_name">SQ_ENH_ITEM_MOD_FILE</param>
+			</generator>
+		</id>
+		<property name="filename" column="file_name" type="com.kcube.lib.jdbc.EncString"/>
+		<property name="filesize" column="file_size" type="java.lang.Long"/>
+		<property name="path" column="save_path" type="com.kcube.lib.jdbc.EncString"/>
+		<property name="dnldCnt" column="dnld_cnt" type="integer"/>
+		<property name="type" column="save_code" type="integer"/>
+		<many-to-one name="item" column="modid" class="com.kcube.enh.mod.EnhMod"/>
+	</class>
+	
+	<!-- 메인 기술목록 -->
+	<class name="com.kcube.enh.mod.EnhModList" table="enh_item_mod_list">
+		<id name="title" column="title" type="java.lang.Long"></id>
+		<property name="modCount" column="mod_count" type="integer"/>
+		<property name="lastUpdt" column="last_updt" type="java.util.Date"/>
+		<property name="rgstDate" column="rgst_date" type="java.util.Date"/>
+	</class>
+	
+	<!-- EnhTask-->
+	<class name="com.kcube.enh.task.EnhTask" table="ENH_ITEM_TASK">
+		<id name="id" column="TASKID" type="java.lang.Long">
+				<generator class="native">
+			 		<param name="sequence_name">SQ_ENH_ITEM_TASK</param>
+				</generator>
+		</id>
+		<property name="enhId" column="enhid" type="java.lang.Long"/>
+		<property name="rgstDate" column="rgst_date" type="java.util.Date"/>
+		<property name="lastUpdt" column="last_updt" type="java.util.Date"/>
+		<property name="taskSdate" column="TASK_SDATE" type="java.util.Date"/>
+		<property name="taskEdate" column="TASK_EDATE" type="java.util.Date"/>
+		<property name="planSdate" column="PLAN_SDATE" type="java.util.Date"/>
+		<property name="planEdate" column="PLAN_EDATE" type="java.util.Date"/>
+		<property name="percent" column="PERCENT" type="integer"/>
+		<property name="taskCode" column="TASK_CODE" type="integer"/>
+		<property name="reside" column="reside" type="integer"/>
+		<property name="task" column="TASK" type="com.kcube.lib.jdbc.EncString"/>
+		<property name="clob" column="task_content" type="clob"/>
+		<property name="fileExt" column="file_ext" type="com.kcube.lib.jdbc.EncString"/>
+		<property name="opnCnt" column="opn_cnt" type="integer"/>
+		<property name="isVisb" column="isVisb" type="integer"/>		
+		<component name="author" class="com.kcube.sys.usr.User">
+			<property name="userId" column="userid" type="java.lang.Long"/>
+			<property name="name" column="user_name" type="com.kcube.lib.jdbc.EncString"/>
+			<property name="displayName" column="user_disp" type="com.kcube.lib.jdbc.EncString"/>
+		</component>
+		<set name="attachments" inverse="true" lazy="true" sort="natural">
+			<key column="taskid"/>
+			<one-to-many class="com.kcube.enh.task.EnhTask$Attachment"/>
+		</set>
+		<set name="opinions" inverse="true" lazy="true" order-by="opnid">
+			<key column="taskid"/>
+			<one-to-many class="com.kcube.enh.task.EnhTask$Opinion"/>
+		</set>
+		<property name="tenantId" column="tenantid" type="java.lang.Long"/>
+	</class>
+	
+	<class name="com.kcube.enh.task.EnhTask$Attachment" table="enh_item_task_file">
+		<id name="id" column="fileid" type="java.lang.Long">
+			<generator class="native">
+		 		<param name="sequence_name">SQ_ENH_ITEM_TASK_FILE</param>
+			</generator>
+		</id>
+		<property name="filename" column="file_name" type="com.kcube.lib.jdbc.EncString"/>
+		<property name="filesize" column="file_size" type="java.lang.Long"/>
+		<property name="path" column="save_path" type="com.kcube.lib.jdbc.EncString"/>
+		<property name="dnldCnt" column="dnld_cnt" type="integer"/>
+		<property name="type" column="save_code" type="integer"/>
+		<many-to-one name="item" column="taskid" class="com.kcube.enh.task.EnhTask"/>
+	</class>
+	<class name="com.kcube.enh.task.EnhTask$Opinion" table="enh_item_task_opn">
+		<id name="id" column="opnid" type="java.lang.Long">
+			<generator class="native">
+		 		<param name="sequence_name">SQ_ENH_ITEM_TASK_OPN</param>
+			</generator>
+		</id>
+		<property name="gid" column="gid" type="java.lang.Long"/>
+		<property name="itemId" column="taskid" type="java.lang.Long"/>
+		<property name="content" column="content" type="com.kcube.lib.jdbc.EncString"/>
+		<property name="rgstDate" column="rgst_date" type="java.util.Date"/>
+		<component name="rgstUser" class="com.kcube.sys.usr.User">
+			<property name="userId" column="userid" type="java.lang.Long"/>
+			<property name="name" column="user_name" type="com.kcube.lib.jdbc.EncString"/>
+			<property name="displayName" column="user_disp" type="com.kcube.lib.jdbc.EncString"/>
+		</component>
+		<property name="rgstUserId" column="rgst_userid" type="java.lang.Long"/>
+	</class>
+</hibernate-mapping>
