@@ -88,6 +88,16 @@ public class EnhAdmin
 			Enh server = (Enh) _storage.load(ctx.getLong("id"));
 			Enh client = new Enh();
 			client.setStatus(ctx.getInt("status"));
+			
+			Date date = null;
+			String dateStr = ctx.getParameter("completeDate");
+			if (ctx.getInt("status") == Enh.ENHCOM_STATUS && dateStr != null && !dateStr.isEmpty()) {
+			    date = ctx.getDate("completeDate"); // 안전하게 변환
+			}
+			if(date != null) {
+				client.setCompleteDate(date);
+			}
+			
 			EnhManager.updateStatus(server, client);
 
 			JsonWriter jwriter = new JsonWriter(ctx.getWriter());

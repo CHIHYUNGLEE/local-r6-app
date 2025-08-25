@@ -54,9 +54,26 @@ EnhTaskStatusFieldEditor.prototype.add = function(option){
 	a.click(this, function(e) {
 		var $this = $(this);
 		e.data.value = $this.attr('value');
-		e.data.ul.find('li.selected').removeClass('selected');
-		$this.parent().addClass('selected');
-		e.data.doUpdate();
+		
+		if(e.data.value == TaskItem.COMPLETE){
+			var url = JSV.getContextPath(DateFieldEditor.DIALOG_SRC);
+			var width = '250px' ;
+			var height = JSV.browser.msie6 ? '245px': '235px' ;
+			var feature = 'dialogWidth:'+width+';dialogHeight:'+height+';scroll:no;status:no;resizable:no;';
+			JSV.showModalDialog(url, null, feature, function(time){
+				if(time){
+					e.data.ul.find('li.selected').removeClass('selected');
+					$this.parent().addClass('selected');
+					console.log(time);
+					e.data.doUpdate(time);
+				}
+			});
+		}else{
+			e.data.ul.find('li.selected').removeClass('selected');
+			$this.parent().addClass('selected');
+			e.data.doUpdate(null);
+		}
+		
 	});
 	this.statuses[option.value] = option.text;
 }
@@ -84,14 +101,22 @@ EnhTaskStatusFieldEditor.prototype.setId = function(id){
 EnhTaskStatusFieldEditor.prototype.setCompleteDate = function(date){
 	this.completeDate.text(JSV.getLang('TaskStatusFieldEditor', 'completeDate') + DateFormat.format(new Date(date), JSV.getLang('DateFormat','dateType1'))).show();
 }
-EnhTaskStatusFieldEditor.prototype.doUpdate = function(){
+EnhTaskStatusFieldEditor.prototype.doUpdate = function(time){
 	var id = this.id || JSV.getParameter(this.style.attribute);
+	let data = {
+		    id: id,
+		    status: this.value
+		};
+	
+	if(time){
+		data.completeDate = time;
+	}
 	if (this.editable) {
 		$.ajax({
 			url : JSV.getModuleUrl(JSV.getContextPath(this.style.action || EnhTaskStatusFieldEditor.action)),
 			type : 'POST',
 			dataType : 'json',
-			data : {'id' : id, 'status' : this.value},
+			data : data,
 			context : this,
 			async : false,
 			success : function(data, status){

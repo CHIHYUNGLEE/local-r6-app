@@ -63,7 +63,7 @@
 }
 .EnhTaskStatusFieldEditor .layer li a:hover{color:#111;background:#f2f2f3;}
 .EnhTaskStatusFieldEditor .layer li.selected a{color:#111;padding-right:37px;}
-.EnhTaskStatusFieldEditor .layer li.selected a:before{content:'';position:absolute;top:12px;right:15px;display:block;width:12px;height:10px;background:url(img/ico_selected_status.png) 0 0 no-repeat;}
+.EnhTaskStatusFieldEditor .layer li.selected a:before{content:'';position:absolute;top:12px;right:15px;display:block;width:12px;height:10px;background:url(../img/ico_selected_status.png) 0 0 no-repeat;}
 .EnhTaskStatusFieldEditor .layer li .txt{float:left;margin-top:8px;margin-bottom:6px;}
 .EnhTaskStatusBox{display:inline-block;width:55px;height:22px;padding:0 5px;margin-top:-1px;border-radius:11px;color:#FFF;font-size:11px;letter-spacing:-0.5px;line-height:21px;text-align:center;overflow:hidden;white-space:nowrap;text-overflow:ellipsis;box-sizing:content-box;}
 .EnhTaskStatusBox.status3400{background:#ff3f80;}

@@ -145,7 +145,7 @@ public class EnhManager
 	 */
 	static void updateStatus(Enh server, Enh client) throws Exception
 	{
-		Date date = (client.getStatus() == Enh.ENHCOM_STATUS) ? new Date() : null;
+		Date date = (client.getStatus() == Enh.ENHCOM_STATUS) ? client.getCompleteDate() : null;
 		server.setCompleteDate(date);
 		server.setStatus(client.getStatus());
 	}
@@ -189,7 +189,6 @@ public class EnhManager
 			task.setRgstDate(new Date());
 			
 			DbService.save(task);
-			EnhTaskHistory.alimiTask(task);
 		}
 	}
 }
